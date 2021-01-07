@@ -1,0 +1,22 @@
+name: Find Slack User Action
+description: GitHub Action that retrieves a Slack username for the author of the most recent commit (or provided email).
+inputs:
+  email:
+    description: The email to convert to slack user.
+    default: ${{ github.event.head_commit.author.email }}
+  slack-token:
+    description: The Slack API token.
+  default-username:
+    description: The username to use if the email address does not match a Slack user.
+  default-member-id:
+    description: The member ID to use if the email address does not match a Slack user.
+outputs:
+  username: 
+    description: The retrieved Slack username.
+  member-id:
+    description: The retrieved Slack user's member ID. 
+  found-user:
+    description: Boolean indicating if a matching Slack username was found.
+runs:
+  using: 'node12'
+  main: 'index.js'
