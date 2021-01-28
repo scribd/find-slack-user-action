@@ -7,7 +7,7 @@ GitHub Action that retrieves a Slack username for the author of the most recent 
 ```yaml
 - name: Find Slack user
   id: find-slack-user
-  uses: justAnotherDev/find-slack-user-action@v1
+  uses: scribd/find-slack-user-action@v1
   with:
     slack-token: ${{ secrets.SLACK_API_TOKEN }}
 

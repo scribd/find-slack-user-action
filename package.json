@@ -8,9 +8,9 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/justAnotherDev/find-slack-user-action.git"
+    "url": "git+https://github.com/scribd/find-slack-user-action.git"
   },
-  "homepage": "https://github.com/justAnotherDev/find-slack-user-action#readme",
+  "homepage": "https://github.com/scribd/find-slack-user-action#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "slack": "^11.0.2"
