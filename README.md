@@ -33,6 +33,10 @@ The username to use if the email address does not match a Slack user.
 
 The member ID to use if the email address does not match a Slack user.
 
+### `include-at-symbol`
+
+Include @ as a prefix to the found user. *Defaults to false*
+
 ## Outputs
 
 ### `username`
