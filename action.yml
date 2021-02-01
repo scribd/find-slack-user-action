@@ -10,6 +10,9 @@ inputs:
     description: The username to use if the email address does not match a Slack user.
   default-member-id:
     description: The member ID to use if the email address does not match a Slack user.
+  include-at-symbol:
+    description: Include @ as a prefix to the found user.
+    default: false
 outputs:
   username: 
     description: The retrieved Slack username.
