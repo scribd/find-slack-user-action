@@ -13,6 +13,15 @@ GitHub Action that retrieves a Slack username for the author of the most recent 
 
 - name: Print Slack user
   run: echo "${{ steps.find-slack-user.outputs.username }}"
+
+- name: Mention the user in Slack
+  uses: archive/github-actions-slack@v2.2.1
+  with:
+    slack-function: send-message
+    slack-bot-user-oauth-access-token: ${{ secrets.SLACK_API_TOKEN }}
+    slack-channel: ABC123
+    slack-text: |
+      "Hello, <@${{ steps.find-slack-user.outputs.member-id }}>!"
 ```
 
 ## Inputs
@@ -45,8 +54,16 @@ The retrieved Slack username.
 
 ### `member-id`
 
-The retrieved Slack user's member ID.
+The retrieved Slack user's member ID. This is what you'll use to [mention your user](https://api.slack.com/reference/surfaces/formatting#mentioning-users):
+> Hey <@U024BE7LH>, thanks for submitting your report.
 
 ### `found-user`
 
 Boolean indicating if a matching Slack username was found.
+
+
+## Permissions
+
+You'll need to provide the following permissions for the slack bot:
+
+- https://api.slack.com/scopes/users:read.email
