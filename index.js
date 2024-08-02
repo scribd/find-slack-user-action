@@ -12,17 +12,26 @@ async function run() {
       return
     }
 
-    var success = true
-    const response = await slack.users.lookupByEmail({token:slackToken, email:email}).catch(err => {
-      success = false
-    })
+    const response = await lookupUserByEmail(slackToken, email)
 
-    core.setOutput("found-user", success)
-    core.setOutput("username", success ? (includeAtSymbol ? '@' : '').concat(response.user.name) : core.getInput('default-username', { required: false }))
-    core.setOutput("member-id", success ? response.user.id : core.getInput('default-member-id', { required: false }))
+    core.setOutput("found-user", response.success)
+    core.setOutput("username", response.success ? (includeAtSymbol ? '@' : '').concat(response.user.name) : core.getInput('default-username', { required: false }))
+    core.setOutput("member-id", response.success ? response.user.id : core.getInput('default-member-id', { required: false }))
   }
   catch (err) {
     core.setFailed(err.message)
+  }
+}
+
+async function lookupUserByEmail(slackToken, email) {
+  try {
+    const response = await slack.users.lookupByEmail({ token: slackToken, email });
+    console.log(`Response: ${JSON.stringify(response)}`)
+    core.setOutput("response", JSON.stringify(response))
+    return { success: true, user: response.user };
+  } catch (err) {
+    console.error(`Error looking up user by email: ${err.message}`);
+    return { success: false };
   }
 }
 

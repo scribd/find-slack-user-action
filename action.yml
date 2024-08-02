@@ -20,6 +20,8 @@ outputs:
     description: The retrieved Slack user's member ID. 
   found-user:
     description: Boolean indicating if a matching Slack username was found.
+  response:
+    description: Full response
 runs:
   using: 'node20'
   main: 'index.js'
